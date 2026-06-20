@@ -1,103 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NOVA · Intelligence HUD</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Rajdhani:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body class="space">
-    <canvas id="starfield"></canvas>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA · Intelligence HUD</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Rajdhani:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="space">
+<canvas id="starfield"></canvas>
 
-    <div class="app">
-      <aside class="sidebar">
-        <div class="logo-block">
-          <img
-            id="logo-icon"
-            class="logo-icon"
-            src="images/space-icon.png"
-            onerror="
-              this.onerror = null;
-              this.src = 'images/space-icon2.png';
-            "
-          />
-          <div class="logo-name" id="logo-text">NOVA</div>
-        </div>
-
-        <div class="mode-switch">
-          <button
-            class="mode-btn active"
-            id="btn-space"
-            onclick="switchMode('space')"
-          >
-            SPACE
-          </button>
-          <button class="mode-btn" id="btn-ocean" onclick="switchMode('ocean')">
-            OCEAN
-          </button>
-        </div>
-
-        <div class="nav-label">DIRECT QUERIES</div>
-        <div class="questions-list" id="questions-box"></div>
-
-        <div class="sessions-section">
-          <div class="nav-label">MISSION HISTORY</div>
-          <div class="sessions-list" id="sessions-list"></div>
-        </div>
-
-        <div class="sidebar-footer">
-          <button
-            class="new-mission-btn"
-            id="new-mission-btn"
-            onclick="startNewMission()"
-          >
-            + NEW MISSION
-          </button>
-        </div>
-      </aside>
-
-      <main class="main">
-        <div class="topbar">
-          <div class="live-status" id="conn-status">
-            <div class="status-dot"></div>
-            <span id="conn-label">CONNECTING...</span>
-          </div>
-          <div class="hud-right">
-            <div class="ctx-counter" id="ctx-counter">CTX: 0 MSG</div>
-            <div class="hud-sid" id="hud-sid">ID: —</div>
-          </div>
-        </div>
-
-        <div class="chat-wrap" id="chat-wrap"></div>
-
-        <div class="input-section">
-          <div class="command-bar">
-            <textarea
-              id="chat-input"
-              rows="1"
-              placeholder="Enter transmission command..."
-              onkeydown="handleKey(event)"
-              oninput="autoResize(this)"
-            ></textarea>
-            <button class="stop-btn" id="btn-stop" onclick="stopAI()">
-              [ STOP ]
-            </button>
-            <button class="execute-btn" id="btn-send" onclick="sendMessage()">
-              EXECUTE
-            </button>
-          </div>
-          <div class="input-hint">
-            Powered by LLaMA 3.3 via Groq &nbsp;·&nbsp; Enter to send
-            &nbsp;·&nbsp; Shift+Enter for new line
-          </div>
-        </div>
-      </main>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo-block">
+      <img id="logo-icon" class="logo-icon" src="images/space-icon.png" onerror="this.onerror=null; this.src='images/space-icon2.png';">
+      <div class="logo-name" id="logo-text">NOVA</div>
     </div>
 
-    <script src="js/app.js"></script>
-  </body>
+    <div class="mode-switch">
+      <button class="mode-btn active" id="btn-space" onclick="switchMode('space')">SPACE</button>
+      <button class="mode-btn" id="btn-ocean" onclick="switchMode('ocean')">OCEAN</button>
+    </div>
+
+    <div class="nav-label">DIRECT QUERIES</div>
+    <div class="questions-list" id="questions-box"></div>
+
+    <div class="sessions-section">
+      <div class="nav-label">MISSION HISTORY</div>
+      <div class="sessions-list" id="sessions-list"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="new-mission-btn" id="new-mission-btn" onclick="startNewMission()">+ NEW MISSION</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="live-status" id="conn-status">
+        <div class="status-dot"></div>
+        <span id="conn-label">CONNECTING...</span>
+      </div>
+      <div class="hud-right">
+        <div class="ctx-counter" id="ctx-counter">CTX: 0 MSG</div>
+        <div class="hud-sid" id="hud-sid">ID: —</div>
+      </div>
+    </div>
+
+    <div class="chat-wrap" id="chat-wrap"></div>
+
+    <div class="input-section">
+      <div class="command-bar">
+        <textarea id="chat-input" rows="1" placeholder="Enter transmission command..."
+          onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="stop-btn" id="btn-stop" onclick="stopAI()">[ STOP ]</button>
+        <button class="execute-btn" id="btn-send" onclick="sendMessage()">EXECUTE</button>
+      </div>
+      <div class="input-hint">Powered by LLaMA 3.3 via Groq &nbsp;·&nbsp; Enter to send &nbsp;·&nbsp; Shift+Enter for new line</div>
+    </div>
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+</body>
 </html>

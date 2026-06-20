@@ -21,8 +21,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 if not GROQ_API_KEY:
     raise RuntimeError("GROQ_API_KEY not found — check your .env file")
 
-# NASA key is optional. Falls back to NASA's shared DEMO_KEY
-# (rate-limited to 30 req/hour/IP — fine for local demo, not for public hosting).
+
 NASA_API_KEY = os.getenv("NASA_API_KEY", "DEMO_KEY")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -101,8 +100,7 @@ async def init_db():
                 created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
             )
         ''')
-        # Migration: add user_token column for databases created before the column existed.
-        # Narrow except so only "duplicate column" is swallowed; other errors surface.
+
         try:
             await db.execute(
                 "ALTER TABLE sessions ADD COLUMN user_token TEXT NOT NULL DEFAULT 'anonymous'"
@@ -135,11 +133,11 @@ app.add_middleware(
 )
 
 # ── STATIC FILES ──
-# Serve index.html at / and the images/ folder at /images/...
-# Frontend uses same-origin relative URLs (/api/..., /images/...), so the
-# browser never sends cross-origin requests and the CORS allowlist stays empty.
+
 STATIC_DIR = Path(BASE_DIR)
 app.mount("/images", StaticFiles(directory=STATIC_DIR / "images"), name="images")
+app.mount("/css", StaticFiles(directory=STATIC_DIR / "css"), name="css")
+app.mount("/js", StaticFiles(directory=STATIC_DIR / "js"), name="js")
 
 @app.get("/", include_in_schema=False)
 async def root():

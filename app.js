@@ -12,17 +12,13 @@ let retryTimer = null;
 // AI names per mode — change these to match your preference
 const AI_NAMES = { space: "NOVA", ocean: "MARINA" };
 
-// Portrait images — place your files in the images/ folder
-// images/nova-portrait.png   → shown next to NOVA title in space mode
-// images/marina-portrait.png → shown next to MARINA title in ocean mode
+
 const AI_PORTRAITS = {
   space: "images/nova-portrait.png",
   ocean: "images/marina-portrait.png",
 };
 
-// Orb images — the rocket / submarine that float inside the glowing ball
-// images/space-orb.png  → rocket / astronaut / planet (space welcome screen)
-// images/ocean-orb.png  → submarine / fish / wave (ocean welcome screen)
+
 const ORB_IMGS = {
   space: "images/space-orb.png",
   ocean: "images/ocean-orb.png",
@@ -380,9 +376,7 @@ function escapeHtml(t) {
     .replace(/\n/g, "<br>");
 }
 
-// Escape a string for safe interpolation into HTML attributes and JS string
-// literals (onclick="..."). Use for any value rendered into an attribute or
-// event handler; `escapeHtml` is only safe for element-text contexts.
+
 function escapeAttr(s) {
   return String(s ?? "")
     .replace(/&/g, "&amp;")
@@ -507,17 +501,13 @@ function renderWelcome() {
   div.innerHTML =
     '<div class="orb-container">' +
     '<div class="orb">' +
-    // ── YOUR IMAGE GOES HERE ──
-    // space mode: put your rocket PNG at images/space-orb.png
-    // ocean mode: put your submarine PNG at images/ocean-orb.png
+
     '<img class="orb-img" src="' +
     orbImg +
     '" onerror="this.style.display=\'none\'" alt="">' +
     "</div></div>" +
     '<div class="welcome-header">' +
-    // ── AI PORTRAIT GOES HERE ──
-    // space mode: put photo/avatar at images/nova-portrait.png
-    // ocean mode: put photo/avatar at images/marina-portrait.png
+
     '<img class="ai-portrait" src="' +
     portrait +
     '" onerror="this.onerror=null; this.src=\'' +

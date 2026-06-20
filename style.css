@@ -452,7 +452,7 @@ body {
     margin-top: 8px;
 }
 
-/* AI portrait next to welcome title */
+
 .welcome-header {
     display: flex;
     align-items: center;
@@ -466,7 +466,7 @@ body {
     height: 64px;
     object-fit: contain;
     border-radius: 8px;
-    /* Place your AI portrait at: images/nova-portrait.png (space) or images/marina-portrait.png (ocean) */
+
 }
 
 /* Messages */
